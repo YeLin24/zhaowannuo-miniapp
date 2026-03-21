@@ -1,0 +1,363 @@
+/* 对应示例图2：破价专区样式 */
+
+.page {
+  background-color: #FFFFFF;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ===== NavBar ===== */
+.navbar {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 32rpx 16rpx;
+  box-sizing: border-box;
+}
+
+/* 返回箭头（从图2提取：< 字符，左侧） */
+.navbar__back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.back-arrow {
+  font-size: 56rpx;
+  color: #000000;
+  font-weight: 300;
+  line-height: 1;
+  margin-top: -8rpx;
+}
+
+/* "破价专区"胶囊badge（从图2提取：圆角28rpx，边框，黑色文字） */
+.navbar__title-badge {
+  height: 60rpx;
+  padding: 0 32rpx;
+  border: 2rpx solid #000000;
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__title-text {
+  font-size: 28rpx;
+  color: #000000;
+  font-weight: 500;
+}
+
+.navbar__right {
+  width: 174rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 胶囊按钮（同首页） */
+.capsule-btn {
+  width: 174rpx;
+  height: 64rpx;
+  border: 1rpx solid #E5E5E5;
+  border-radius: 32rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}
+
+.capsule-dots {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background-color: #000000;
+}
+
+.capsule-divider {
+  width: 1rpx;
+  height: 32rpx;
+  background-color: #E5E5E5;
+}
+
+.capsule-circle {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid #000000;
+}
+
+/* ===== 模特Banner ===== */
+.banner-model {
+  width: 100%;
+  position: relative;
+  margin: 0 0 24rpx;
+}
+
+.banner-model__img {
+  width: 100%;
+}
+
+/* Banner遮罩层 */
+.banner-model__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  gap: 12rpx;
+}
+
+.banner-model__sub {
+  font-size: 24rpx; /* 从示例图提取：小字 "all products" */
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 2rpx;
+}
+
+.banner-model__title {
+  font-size: 44rpx; /* 从示例图提取：大字 "所有产品" */
+  color: #FFFFFF;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+}
+
+.banner-model__btn {
+  margin-top: 8rpx;
+  background-color: #000000;
+  padding: 12rpx 40rpx;
+  border-radius: 40rpx;
+}
+
+.banner-model__btn-text {
+  font-size: 24rpx;
+  color: #FFFFFF;
+  letter-spacing: 2rpx;
+}
+
+/* ===== 商品列表 ===== */
+.product-list {
+  padding: 0 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 32rpx;
+}
+
+/* 商品卡片：白色背景，圆角12rpx，阴影 */
+/* 从示例图2提取：左图右文布局，左图正方形240rpx */
+.product-card {
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.08); /* 从示例图提取 */
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  padding: 20rpx;
+  gap: 20rpx;
+  align-items: flex-start;
+}
+
+/* 左侧图片区域 */
+.product-card__img-wrap {
+  flex-shrink: 0;
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-card__img {
+  width: 220rpx;
+  height: 220rpx;
+  font-size: 18rpx;
+}
+
+/* 已抢光遮罩 */
+/* 从示例图2提取：黑色半透明rgba(0,0,0,0.6)，圆角pill */
+.sold-out-mask {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0,0,0,0.65);
+  padding: 12rpx 28rpx;
+  border-radius: 40rpx;
+}
+
+.sold-out-text {
+  font-size: 24rpx;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+/* 右侧信息区 */
+.product-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  min-width: 0;
+}
+
+/* 商品名 */
+/* 从示例图2提取：font-weight:500，#000000，28rpx */
+.product-card__name {
+  font-size: 26rpx;
+  color: #000000;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* 标签组 */
+.product-card__tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+/* 标签：灰色边框，圆角 */
+/* 从示例图2提取：边框#CCCCCC，文字#666666，font-size:20rpx */
+.tag {
+  font-size: 20rpx;
+  color: #666666;
+  border: 1rpx solid #CCCCCC;
+  border-radius: 4rpx;
+  padding: 4rpx 12rpx;
+  line-height: 1.4;
+}
+
+/* 库存文字 */
+/* 从示例图2提取：#999999，24rpx */
+.product-card__stock {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 价格行 */
+.product-card__price-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+/* 价格文字 */
+/* 从示例图2提取：font-weight:600，#000000，32rpx */
+.product-card__price {
+  font-size: 32rpx;
+  color: #000000;
+  font-weight: 600;
+}
+
+/* 加购按钮：圆圈+号 */
+/* 从示例图2提取：直径64rpx，边框1rpx #CCCCCC */
+.add-cart-btn {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  border: 1rpx solid #CCCCCC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-cart-btn--disabled {
+  opacity: 0.4;
+}
+
+.add-cart-icon {
+  font-size: 36rpx;
+  color: #999999;
+  line-height: 1;
+  margin-top: -2rpx;
+}
+
+/* ===== 空状态 ===== */
+.empty-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* ===== 加载/错误状态 ===== */
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #F0F0F0;
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+  gap: 32rpx;
+}
+
+.error-text { font-size: 28rpx; color: #999999; }
+.retry-btn {
+  padding: 16rpx 48rpx;
+  background-color: #000000;
+  color: #FFFFFF;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+}
+
+/* ===== 悬浮礼物按钮 ===== */
+.float-gift {
+  position: fixed;
+  right: 32rpx;
+  bottom: calc(120rpx + env(safe-area-inset-bottom));
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6B35, #FF8C42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  box-shadow: 0 4rpx 16rpx rgba(255, 107, 53, 0.4);
+}
+
+.float-gift__icon {
+  font-size: 44rpx;
+}

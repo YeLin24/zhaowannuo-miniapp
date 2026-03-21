@@ -1,0 +1,54 @@
+/* 全局样式重置 */
+page {
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+  font-size: 28rpx;
+  color: #000000;
+  background-color: #F5F5F5;
+  box-sizing: border-box;
+}
+
+/* CSS 颜色变量 */
+/* --color-black: #000000 */
+/* --color-dark: #333333 */
+/* --color-mid: #666666 */
+/* --color-gray: #999999 */
+/* --color-light: #F5F5F5 */
+/* --color-border: #CCCCCC */
+/* --color-orange: #FF6B35 */
+/* --color-member-bg: #F5F0E8 */
+/* --color-member-text: #8B7355 */
+
+* {
+  box-sizing: border-box;
+}
+
+/* 清除默认边距 */
+view, text, image, input, button {
+  margin: 0;
+  padding: 0;
+}
+
+/* 按钮重置 */
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}
+
+button::after {
+  border: none;
+}
+
+/* 图片占位符通用样式 */
+.img-placeholder {
+  background-color: #F0F0F0;
+  border: 1rpx dashed #CCCCCC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999999;
+  font-size: 22rpx;
+  text-align: center;
+  overflow: hidden;
+}

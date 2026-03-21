@@ -1,0 +1,123 @@
+<!-- 对应示例图2：破价专区 -->
+<!-- 关键："破价专区"为圆角胶囊badge，商品单列，已抢光遮罩 -->
+
+<view class="page" style="padding-bottom: calc(100rpx + {{safeBottom}}px)">
+
+  <!-- NavBar：返回箭头 + 胶囊badge标题 + 胶囊按钮 -->
+  <view class="navbar" style="padding-top: {{statusBarHeight}}px; height: calc({{statusBarHeight}}px + 88rpx)">
+    <view class="navbar__back" bindtap="goBack">
+      <text class="back-arrow">‹</text>
+    </view>
+    <!-- "破价专区"是圆角胶囊样式（从图2提取） -->
+    <view class="navbar__title-badge">
+      <text class="navbar__title-text">破价专区</text>
+    </view>
+    <view class="navbar__right">
+      <view class="capsule-btn">
+        <view class="capsule-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+        <view class="capsule-divider"></view>
+        <view class="capsule-circle"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <view class="loading-spinner"></view>
+  </view>
+
+  <!-- 错误状态 -->
+  <view wx:elif="{{hasError}}" class="error-wrap">
+    <text class="error-text">加载失败，点击重试</text>
+    <view class="retry-btn" bindtap="loadData">重试</view>
+  </view>
+
+  <block wx:else>
+    <!-- 模特Banner -->
+    <!-- 占位符：请替换为示例图2顶部模特banner（戴帽子女生） -->
+    <view class="banner-model">
+      <view class="banner-model__img img-placeholder" style="aspect-ratio: 1316/700">
+        <text>【请替换】示例图2 - 顶部模特banner（黑帽子女生）</text>
+      </view>
+      <view class="banner-model__overlay">
+        <text class="banner-model__sub">all products</text>
+        <text class="banner-model__title">所有产品</text>
+        <view class="banner-model__btn">
+          <text class="banner-model__btn-text">点击进入</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品列表（空状态） -->
+    <view wx:if="{{productList.length === 0}}" class="empty-wrap">
+      <text class="empty-text">暂无商品</text>
+    </view>
+
+    <!-- 商品单列列表 -->
+    <!-- 从示例图2提取：白色卡片，圆角12rpx，左图右文，阴影 -->
+    <view wx:else class="product-list">
+      <view
+        class="product-card"
+        wx:for="{{productList}}"
+        wx:key="id"
+        bindtap="goDetail"
+        data-id="{{item.id}}"
+      >
+        <!-- 左侧商品图 -->
+        <view class="product-card__img-wrap">
+          <!-- 占位符：请替换为示例图2商品缩略图 -->
+          <view class="product-card__img img-placeholder">
+            <text>【请替换】示例图2 - 商品图{{index+1}}</text>
+          </view>
+          <!-- 已抢光遮罩（从图2提取：黑色半透明，白色文字） -->
+          <view wx:if="{{item.isSoldOut}}" class="sold-out-mask">
+            <text class="sold-out-text">已抢光</text>
+          </view>
+        </view>
+
+        <!-- 右侧商品信息 -->
+        <view class="product-card__info">
+          <!-- 商品名 -->
+          <text class="product-card__name">{{item.name}}</text>
+
+          <!-- 标签组：不退款/不换款/只换尺码 -->
+          <view class="product-card__tags">
+            <text
+              class="tag"
+              wx:for="{{item.tags}}"
+              wx:key="*this"
+              wx:for-item="tag"
+            >{{tag}}</text>
+          </view>
+
+          <!-- 库存（有库存时显示） -->
+          <text wx:if="{{item.stock > 0 && !item.isSoldOut}}" class="product-card__stock">仅剩{{item.stock}}件</text>
+
+          <!-- 价格行 -->
+          <view class="product-card__price-row">
+            <text class="product-card__price">¥{{item.price}}</text>
+            <!-- 加购按钮（圆圈+号） -->
+            <view
+              class="add-cart-btn {{item.isSoldOut ? 'add-cart-btn--disabled' : ''}}"
+              catchtap="onAddCart"
+              data-id="{{item.id}}"
+            >
+              <text class="add-cart-icon">+</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </block>
+
+  <!-- 悬浮礼物按钮 -->
+  <view class="float-gift" bindtap="onGiftTap">
+    <text class="float-gift__icon">🎁</text>
+  </view>
+
+</view>

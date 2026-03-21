@@ -1,0 +1,73 @@
+<!-- 对应示例图3：购物车 -->
+<!-- 关键：背景#F5F5F5（浅灰），NavBar标题左对齐，空状态居中 -->
+
+<view class="page" style="padding-bottom: calc(100rpx + {{safeBottom}}px)">
+
+  <!-- NavBar：Home图标+购物车 左对齐，胶囊按钮右 -->
+  <!-- 从图3提取：Home图标和"购物车"文字紧靠在一起，不是分两端 -->
+  <view class="navbar" style="padding-top: {{statusBarHeight}}px; height: calc({{statusBarHeight}}px + 88rpx)">
+    <view class="navbar__left">
+      <view class="navbar__home-icon">
+        <view class="home-icon-roof"></view>
+        <view class="home-icon-body"></view>
+      </view>
+      <text class="navbar__title">购物车</text>
+    </view>
+    <view class="navbar__right">
+      <view class="capsule-btn">
+        <view class="capsule-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+        <view class="capsule-divider"></view>
+        <view class="capsule-circle"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <view class="loading-spinner"></view>
+  </view>
+
+  <!-- 错误状态 -->
+  <view wx:elif="{{hasError}}" class="error-wrap">
+    <text class="error-text">加载失败</text>
+    <view class="retry-btn" bindtap="loadData">重试</view>
+  </view>
+
+  <block wx:else>
+    <!-- 空状态（从图3提取：插画+文字+按钮，垂直居中） -->
+    <view wx:if="{{cartList.length === 0}}" class="empty-wrap">
+      <!-- 占位插画：灰色盒子+黄叶+粉色小人 -->
+      <!-- 占位符：请替换为示例图3的空购物车插画 -->
+      <view class="empty-illustration img-placeholder">
+        <text>【请替换】示例图3 - 空购物车插画（灰色盒子+黄叶+粉色小人）</text>
+      </view>
+      <!-- 提示文字 -->
+      <!-- 从图3提取：font-size:28rpx，#999999 -->
+      <text class="empty-text">空空如也，快去逛逛吧~</text>
+      <!-- 继续逛逛按钮 -->
+      <!-- 从图3提取：黑色背景，白色文字，圆角40rpx -->
+      <view class="empty-btn" bindtap="goShopping">
+        <text class="empty-btn__text">继续逛逛</text>
+      </view>
+    </view>
+
+    <!-- 购物车列表（有数据时显示） -->
+    <!-- TODO: 二期实现完整购物车功能 -->
+    <view wx:else class="cart-list">
+      <view class="cart-item" wx:for="{{cartList}}" wx:key="id">
+        <view class="cart-item__img img-placeholder">
+          <text>【请替换】商品图{{index+1}}</text>
+        </view>
+        <view class="cart-item__info">
+          <text class="cart-item__name">{{item.name}}</text>
+          <text class="cart-item__price">¥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+</view>

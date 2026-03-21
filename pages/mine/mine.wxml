@@ -1,0 +1,124 @@
+<!-- 对应示例图5：会员中心 -->
+<!-- 关键：菜单4图标单行排列（非2×2），购物须知card，米色会员badge -->
+
+<view class="page" style="padding-bottom: calc(100rpx + {{safeBottom}}px)">
+
+  <!-- NavBar：Home图标左，"会员中心"居中，胶囊右 -->
+  <!-- 从图5提取：标题居中 -->
+  <view class="navbar" style="padding-top: {{statusBarHeight}}px; height: calc({{statusBarHeight}}px + 88rpx)">
+    <view class="navbar__left">
+      <view class="navbar__home-icon">
+        <view class="home-icon-roof"></view>
+        <view class="home-icon-body"></view>
+      </view>
+    </view>
+    <text class="navbar__title">会员中心</text>
+    <view class="navbar__right">
+      <view class="capsule-btn">
+        <view class="capsule-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+        <view class="capsule-divider"></view>
+        <view class="capsule-circle"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <view class="loading-spinner"></view>
+  </view>
+
+  <block wx:else>
+
+    <!-- 用户信息区 -->
+    <view class="user-info">
+      <view class="user-info__left">
+        <!-- 用户ID + 右箭头 -->
+        <view class="user-id-row">
+          <text class="user-id">{{userInfo.id || '21'}}</text>
+          <text class="user-id-arrow">›</text>
+        </view>
+        <!-- 会员badge -->
+        <!-- 从图5提取：米色背景#F5F0E8，棕色文字#8B7355，V1图标 -->
+        <view class="member-badge">
+          <text class="member-badge__icon">V1</text>
+          <text class="member-badge__text">{{userInfo.levelName || '普通会员'}}</text>
+        </view>
+      </view>
+      <!-- 右侧头像 -->
+      <!-- 占位符：请替换为示例图5右上角卡通猫头像 -->
+      <view class="user-avatar img-placeholder">
+        <text>【请替换】示例图5 - 卡通猫头像</text>
+      </view>
+    </view>
+
+    <!-- 购物须知卡片 -->
+    <!-- 从图5提取：浅灰圆角背景，SHOPPING NOTICE大标题，黑色购物须知badge，三栏图标 -->
+    <view class="notice-card">
+      <text class="notice-card__title">SHOPPING  NOTICE</text>
+      <view class="notice-card__subtitle-wrap">
+        <text class="notice-card__subtitle">购 物 须 知</text>
+      </view>
+      <!-- 三栏须知（从图5提取） -->
+      <view class="notice-items">
+        <view class="notice-item">
+          <text class="notice-item__icon">🛡️</text>
+          <text class="notice-item__text">不支持退货退款</text>
+        </view>
+        <view class="notice-item">
+          <text class="notice-item__icon">💰</text>
+          <text class="notice-item__text">不支持仅退款</text>
+        </view>
+        <view class="notice-item">
+          <text class="notice-item__icon">♻️</text>
+          <text class="notice-item__text">不支持换款</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 功能菜单卡片 -->
+    <!-- 从图5提取：白色圆角卡片，4个图标单行，下方退出登录 -->
+    <view class="menu-card">
+      <!-- 4图标单行（从图5提取：不是2×2网格，是单行4个） -->
+      <view class="menu-grid">
+        <view class="menu-item" bindtap="goOrders">
+          <text class="menu-item__icon">📋</text>
+          <text class="menu-item__text">我的订单</text>
+        </view>
+        <view class="menu-item" bindtap="goAddress">
+          <text class="menu-item__icon">📍</text>
+          <text class="menu-item__text">收货人地址</text>
+        </view>
+        <view class="menu-item" bindtap="goCoupon">
+          <text class="menu-item__icon">🎫</text>
+          <text class="menu-item__text">我的优惠券</text>
+        </view>
+        <view class="menu-item" bindtap="goFavorite">
+          <text class="menu-item__icon">☆</text>
+          <text class="menu-item__text">我的收藏</text>
+        </view>
+      </view>
+
+      <!-- 退出登录分割线 -->
+      <view class="menu-divider"></view>
+
+      <!-- 退出登录 -->
+      <!-- 从图5提取：左对齐，箭头图标，独立一行 -->
+      <view class="logout-row" bindtap="onLogout">
+        <text class="logout-icon">↪</text>
+        <text class="logout-text">退出登录</text>
+      </view>
+    </view>
+
+    <!-- 底部文字 -->
+    <!-- 从图5提取：小图标+灰色文字，居中 -->
+    <view class="footer">
+      <text class="footer__text">🍀 凡科商城提供技术支持</text>
+    </view>
+
+  </block>
+
+</view>

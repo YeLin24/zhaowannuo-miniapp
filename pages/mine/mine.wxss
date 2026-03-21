@@ -1,0 +1,316 @@
+/* 对应示例图5：会员中心样式 */
+
+.page {
+  background-color: #F5F5F5;
+  min-height: 100vh;
+}
+
+/* ===== NavBar（标题居中，从图5提取） ===== */
+.navbar {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 32rpx 16rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.navbar__left { width: 44rpx; }
+
+.navbar__home-icon {
+  width: 40rpx;
+  height: 40rpx;
+  position: relative;
+}
+
+.home-icon-roof {
+  width: 0;
+  height: 0;
+  border-left: 20rpx solid transparent;
+  border-right: 20rpx solid transparent;
+  border-bottom: 16rpx solid #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.home-icon-body {
+  width: 28rpx;
+  height: 20rpx;
+  background-color: #000000;
+  position: absolute;
+  bottom: 0;
+  left: 6rpx;
+}
+
+/* "会员中心"标题：绝对居中 */
+.navbar__title {
+  position: absolute;
+  left: 50%;
+  bottom: 20rpx;
+  transform: translateX(-50%);
+  font-size: 32rpx;
+  color: #000000;
+  font-weight: 600;
+}
+
+.navbar__right { display: flex; align-items: center; }
+
+.capsule-btn {
+  width: 174rpx;
+  height: 64rpx;
+  border: 1rpx solid #E5E5E5;
+  border-radius: 32rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}
+
+.capsule-dots { display: flex; flex-direction: row; align-items: center; gap: 6rpx; }
+.dot { width: 8rpx; height: 8rpx; border-radius: 50%; background-color: #000000; }
+.capsule-divider { width: 1rpx; height: 32rpx; background-color: #E5E5E5; }
+.capsule-circle { width: 36rpx; height: 36rpx; border-radius: 50%; border: 2rpx solid #000000; }
+
+/* ===== 用户信息区 ===== */
+.user-info {
+  background-color: #FFFFFF;
+  padding: 40rpx 32rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.user-info__left {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+/* 用户ID行 */
+.user-id-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8rpx;
+}
+
+/* 用户ID "21" */
+/* 从图5提取：36rpx，font-weight:600 */
+.user-id {
+  font-size: 48rpx;
+  color: #000000;
+  font-weight: 600;
+}
+
+.user-id-arrow {
+  font-size: 36rpx;
+  color: #333333;
+  font-weight: 300;
+}
+
+/* 会员badge */
+/* 从图5提取：米色背景#F5F0E8，棕色文字#8B7355，圆角4rpx */
+.member-badge {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6rpx;
+  background-color: #F5F0E8;
+  border-radius: 4rpx;
+  padding: 6rpx 16rpx;
+  align-self: flex-start;
+}
+
+.member-badge__icon {
+  font-size: 20rpx;
+  color: #8B7355;
+  font-weight: 600;
+}
+
+.member-badge__text {
+  font-size: 20rpx;
+  color: #8B7355;
+}
+
+/* 头像圆形 */
+/* 从图5提取：直径120rpx，圆形 */
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  font-size: 16rpx;
+  text-align: center;
+  padding: 8rpx;
+  border-radius: 50% !important;
+  overflow: hidden;
+}
+
+/* ===== 购物须知卡片 ===== */
+/* 从图5提取：浅灰圆角背景，内边距充足 */
+.notice-card {
+  background-color: #F8F6F2; /* 从图5提取：极浅暖灰色背景 */
+  border-radius: 16rpx;
+  margin: 0 24rpx 20rpx;
+  padding: 40rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20rpx;
+}
+
+/* "SHOPPING NOTICE" */
+/* 从图5提取：大字，letter-spacing，#000000 */
+.notice-card__title {
+  font-size: 32rpx;
+  color: #000000;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  text-align: center;
+}
+
+/* "购物须知" 黑色badge */
+.notice-card__subtitle-wrap {
+  background-color: #000000;
+  border-radius: 4rpx;
+  padding: 10rpx 28rpx;
+}
+
+.notice-card__subtitle {
+  font-size: 24rpx;
+  color: #FFFFFF;
+  letter-spacing: 4rpx;
+}
+
+/* 三栏须知 */
+.notice-items {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 8rpx;
+}
+
+.notice-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.notice-item__icon {
+  font-size: 36rpx;
+}
+
+.notice-item__text {
+  font-size: 20rpx;
+  color: #333333;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ===== 功能菜单卡片 ===== */
+/* 从图5提取：白色圆角卡片 */
+.menu-card {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 0 24rpx 20rpx;
+  overflow: hidden;
+}
+
+/* 4图标单行排列（从图5提取：不是2×2，是水平一行） */
+.menu-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.menu-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+}
+
+/* 图标（从图5提取：outline风格，36rpx） */
+.menu-item__icon {
+  font-size: 48rpx;
+  line-height: 1;
+}
+
+/* 菜单文字（从图5提取：24rpx，#333333） */
+.menu-item__text {
+  font-size: 24rpx;
+  color: #333333;
+  text-align: center;
+}
+
+/* 分割线 */
+.menu-divider {
+  height: 1rpx;
+  background-color: #F5F5F5;
+  margin: 0 32rpx;
+}
+
+/* 退出登录行 */
+/* 从图5提取：左对齐，图标+文字，padding:32rpx */
+.logout-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16rpx;
+  padding: 36rpx 32rpx;
+}
+
+.logout-icon {
+  font-size: 36rpx;
+  color: #000000;
+}
+
+.logout-text {
+  font-size: 28rpx;
+  color: #000000;
+}
+
+/* ===== 底部文字 ===== */
+/* 从图5提取：22rpx，#CCCCCC，居中，带小图标 */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 48rpx;
+  padding-bottom: 40rpx;
+}
+
+.footer__text {
+  font-size: 22rpx;
+  color: #CCCCCC;
+}
+
+/* ===== 加载状态 ===== */
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #F0F0F0;
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }

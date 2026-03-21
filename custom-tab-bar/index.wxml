@@ -1,0 +1,44 @@
+<!-- 自定义TabBar：5栏纯文字，无图标 -->
+<!-- 从示例图提取：选中#000000，未选中#999999，font-size:24rpx -->
+<view class="tab-bar">
+  <view
+    class="tab-bar__item {{selected === 0 ? 'tab-bar__item--active' : ''}}"
+    bindtap="onTabTap"
+    data-index="0"
+    data-path="pages/index/index"
+  >
+    <text class="tab-bar__text">首页</text>
+  </view>
+  <view
+    class="tab-bar__item {{selected === 1 ? 'tab-bar__item--active' : ''}}"
+    bindtap="onTabTap"
+    data-index="1"
+    data-path="pages/new/new"
+  >
+    <text class="tab-bar__text">上新</text>
+  </view>
+  <view
+    class="tab-bar__item {{selected === 2 ? 'tab-bar__item--active' : ''}}"
+    bindtap="onTabTap"
+    data-index="2"
+    data-path="pages/category/category"
+  >
+    <text class="tab-bar__text">分类</text>
+  </view>
+  <view
+    class="tab-bar__item {{selected === 3 ? 'tab-bar__item--active' : ''}}"
+    bindtap="onTabTap"
+    data-index="3"
+    data-path="pages/cart/cart"
+  >
+    <text class="tab-bar__text">购物袋</text>
+  </view>
+  <view
+    class="tab-bar__item {{selected === 4 ? 'tab-bar__item--active' : ''}}"
+    bindtap="onTabTap"
+    data-index="4"
+    data-path="pages/mine/mine"
+  >
+    <text class="tab-bar__text">我的</text>
+  </view>
+</view>

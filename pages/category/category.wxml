@@ -1,0 +1,133 @@
+<!-- 对应示例图6：分类页 -->
+<!-- 关键：居中Logo+"官方旗舰店"，搜索框，横向Tab（小程序专属选中），双列网格 -->
+
+<view class="page" style="padding-bottom: calc(100rpx + {{safeBottom}}px)">
+
+  <!-- NavBar：Home图标左，无标题，胶囊右 -->
+  <view class="navbar" style="padding-top: {{statusBarHeight}}px; height: calc({{statusBarHeight}}px + 88rpx)">
+    <view class="navbar__left">
+      <view class="navbar__home-icon">
+        <view class="home-icon-roof"></view>
+        <view class="home-icon-body"></view>
+      </view>
+    </view>
+    <view class="navbar__right">
+      <view class="capsule-btn">
+        <view class="capsule-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+        <view class="capsule-divider"></view>
+        <view class="capsule-circle"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 居中Logo区（从图6提取：ZHAOWANNUO® 居中 + 官方旗舰店） -->
+  <view class="brand-header">
+    <view class="brand-logo-row">
+      <text class="brand-logo__text">ZHAOWANNUO</text>
+      <text class="brand-logo__reg">®</text>
+    </view>
+    <text class="brand-logo__sub">官方旗舰店</text>
+  </view>
+
+  <!-- 搜索框（从图6提取：圆角，搜索图标+探索更多，全宽） -->
+  <view class="search-bar">
+    <text class="search-bar__icon">🔍</text>
+    <text class="search-bar__placeholder">探索更多</text>
+  </view>
+
+  <!-- 横向滚动Tab标签 -->
+  <!-- 从图6提取：小程序专属（粗体+下划线），其他灰色，可横向滚动 -->
+  <scroll-view class="tab-bar-scroll" scroll-x enhanced>
+    <view class="tab-list">
+      <view
+        class="tab-item {{activeTab === item.id ? 'tab-item--active' : ''}}"
+        wx:for="{{tabs}}"
+        wx:key="id"
+        bindtap="onTabChange"
+        data-id="{{item.id}}"
+      >
+        <text class="tab-item__text">{{item.name}}</text>
+        <view wx:if="{{activeTab === item.id}}" class="tab-item__underline"></view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <view class="loading-spinner"></view>
+  </view>
+
+  <view wx:elif="{{hasError}}" class="error-wrap">
+    <text class="error-text">加载失败</text>
+    <view class="retry-btn" bindtap="loadProducts">重试</view>
+  </view>
+
+  <block wx:else>
+    <!-- Banner（同"所有产品"样式，从图6提取） -->
+    <!-- 占位符：请替换为示例图6的banner图 -->
+    <view class="banner-category">
+      <view class="banner-img img-placeholder" style="aspect-ratio: 1316/500">
+        <text>【请替换】示例图6 - 分类页banner（戴帽子女生）</text>
+      </view>
+      <view class="banner-overlay">
+        <text class="banner-sub">all products</text>
+        <text class="banner-title">所有产品</text>
+        <view class="banner-btn">
+          <text class="banner-btn-text">点击进入</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{productList.length === 0}}" class="empty-wrap">
+      <text class="empty-text">该分类暂无商品</text>
+    </view>
+
+    <!-- 双列商品网格（同上新页） -->
+    <view wx:else class="product-grid">
+      <view
+        class="product-card"
+        wx:for="{{productList}}"
+        wx:key="id"
+        bindtap="goDetail"
+        data-id="{{item.id}}"
+      >
+        <view class="product-card__img-wrap">
+          <!-- 占位符：请替换为示例图6商品图 -->
+          <view class="product-card__img img-placeholder">
+            <text>【请替换】示例图6 - 商品图{{index+1}}</text>
+          </view>
+          <view class="product-card__brand-tag">
+            <text class="product-card__brand-text">ZHAOWANNUO</text>
+          </view>
+        </view>
+        <text class="product-card__name">{{item.name}}</text>
+        <view class="product-card__tags">
+          <text
+            class="tag"
+            wx:for="{{item.tags}}"
+            wx:key="*this"
+            wx:for-item="tag"
+          >{{tag}}</text>
+        </view>
+        <text class="product-card__sales">已售{{item.sales}}件</text>
+        <view class="product-card__price-row">
+          <text class="product-card__price">¥{{item.price}}</text>
+          <view class="cart-btn" catchtap="onAddCart" data-id="{{item.id}}">
+            <text class="cart-btn__icon">🛒</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 悬浮礼物按钮 -->
+  <view class="float-gift" bindtap="onGiftTap">
+    <text class="float-gift__icon">🎁</text>
+  </view>
+
+</view>

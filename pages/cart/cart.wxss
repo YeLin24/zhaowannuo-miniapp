@@ -1,0 +1,235 @@
+/* 对应示例图3：购物车样式 */
+
+/* 从图3提取：页面背景为浅灰#F5F5F5 */
+.page {
+  background-color: #F5F5F5;
+  min-height: 100vh;
+}
+
+/* ===== NavBar ===== */
+/* 从图3提取：背景白色，Home图标+标题紧靠左 */
+.navbar {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 32rpx 16rpx;
+  box-sizing: border-box;
+}
+
+.navbar__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16rpx;
+}
+
+/* Home图标（CSS绘制） */
+.navbar__home-icon {
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.home-icon-roof {
+  width: 0;
+  height: 0;
+  border-left: 20rpx solid transparent;
+  border-right: 20rpx solid transparent;
+  border-bottom: 16rpx solid #000000;
+  position: absolute;
+  top: 0;
+}
+
+.home-icon-body {
+  width: 28rpx;
+  height: 20rpx;
+  background-color: #000000;
+  position: absolute;
+  bottom: 0;
+}
+
+/* "购物车"标题 */
+/* 从图3提取：左对齐，32rpx，#000000 */
+.navbar__title {
+  font-size: 32rpx;
+  color: #000000;
+  font-weight: 600;
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+}
+
+.capsule-btn {
+  width: 174rpx;
+  height: 64rpx;
+  border: 1rpx solid #E5E5E5;
+  border-radius: 32rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}
+
+.capsule-dots {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background-color: #000000;
+}
+
+.capsule-divider {
+  width: 1rpx;
+  height: 32rpx;
+  background-color: #E5E5E5;
+}
+
+.capsule-circle {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid #000000;
+}
+
+/* ===== 空状态 ===== */
+/* 从图3提取：垂直居中，内容在屏幕上半部 */
+.empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 120rpx;
+  padding-bottom: 80rpx;
+}
+
+/* 插画占位符：200×200rpx */
+.empty-illustration {
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 16rpx;
+  font-size: 20rpx;
+  text-align: center;
+  padding: 20rpx;
+}
+
+/* 提示文字 */
+/* 从图3提取：28rpx，#999999，居中 */
+.empty-text {
+  font-size: 28rpx;
+  color: #999999;
+  margin-top: 48rpx;
+  text-align: center;
+}
+
+/* 继续逛逛按钮 */
+/* 从图3提取：黑色背景#000000，白色文字，圆角40rpx，padding:24rpx 80rpx */
+.empty-btn {
+  margin-top: 48rpx;
+  background-color: #000000;
+  border-radius: 48rpx;
+  padding: 24rpx 80rpx;
+}
+
+.empty-btn__text {
+  font-size: 30rpx;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+/* ===== 购物车列表 ===== */
+.cart-list {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.cart-item {
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: row;
+  gap: 20rpx;
+  align-items: center;
+}
+
+.cart-item__img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.cart-item__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.cart-item__name {
+  font-size: 26rpx;
+  color: #000000;
+  font-weight: 500;
+}
+
+.cart-item__price {
+  font-size: 30rpx;
+  color: #000000;
+  font-weight: 600;
+}
+
+/* ===== 加载/错误状态 ===== */
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #F0F0F0;
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+  gap: 32rpx;
+}
+
+.error-text { font-size: 28rpx; color: #999999; }
+.retry-btn {
+  padding: 16rpx 48rpx;
+  background-color: #000000;
+  color: #FFFFFF;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+}
