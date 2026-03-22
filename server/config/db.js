@@ -7,8 +7,6 @@ const pool = mysql.createPool({
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'zhaowannuo',
-  // 生产环境使用 TCP 连接，注释掉 socketPath
-  // socketPath: '/tmp/mysql.sock',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0

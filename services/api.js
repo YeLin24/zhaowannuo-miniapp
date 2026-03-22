@@ -1,104 +1,105 @@
 // services/api.js
-// Mock 数据 - 本地开发使用
+// 真实接口封装
 
-// Mock 数据
-const mockData = {
-  home: {
-    bannerList: [
-      { id: 1, imageUrl: '/images/banner1.jpg', linkType: 'page', linkValue: 'pages/special/special' },
-      { id: 2, imageUrl: '/images/banner2.jpg', linkType: 'page', linkValue: 'pages/new/new' }
-    ],
-    categoryList: [
-      { id: 1, name: '小程序专属' },
-      { id: 2, name: '早期特价' },
-      { id: 3, name: '外套' },
-      { id: 4, name: '内搭' },
-      { id: 5, name: '裤子' },
-      { id: 6, name: '套装' }
-    ],
-    productList: [
-      { id: 1, name: '休闲牛仔外套', code: 'JC001', price: 299, originalPrice: 599, imageUrl: '', stock: 50, tags: ['不退款', '不换款'], isSoldOut: 0 },
-      { id: 2, name: '简约黑色T恤', code: 'TS001', price: 89, originalPrice: 199, imageUrl: '', stock: 100, tags: ['不退款'], isSoldOut: 0 },
-      { id: 3, name: '纯棉休闲裤', code: 'PK001', price: 159, originalPrice: 399, imageUrl: '', stock: 30, tags: ['不退款', '只换尺码'], isSoldOut: 1 }
-    ]
+// 开发环境使用本地服务
+const API_BASE = 'http://localhost:3000/api'
+
+// 三态管理
+const stateManager = {
+  loading: new Map(),
+  error: new Map(),
+
+  setLoading(key, value) {
+    this.loading.set(key, value)
+    wx.setStorageSync(`api_loading_${key}`, value)
   },
-  specialOffers: {
-    productList: [
-      { id: 1, name: '休闲牛仔外套', code: 'JC001', price: 299, originalPrice: 599, imageUrl: '', stock: 50, tags: ['不退款', '不换款'], isSoldOut: 0 },
-      { id: 2, name: '简约黑色T恤', code: 'TS001', price: 89, originalPrice: 199, imageUrl: '', stock: 100, tags: ['不退款'], isSoldOut: 0 },
-      { id: 3, name: '纯棉休闲裤', code: 'PK001', price: 159, originalPrice: 399, imageUrl: '', stock: 30, tags: ['不退款', '只换尺码'], isSoldOut: 1 }
-    ]
+  getLoading(key) {
+    return this.loading.get(key) || wx.getStorageSync(`api_loading_${key}`)
   },
-  categories: {
-    tabs: [
-      { id: 0, name: '全部' },
-      { id: 1, name: '小程序专属' },
-      { id: 2, name: '早期特价' },
-      { id: 3, name: '外套' },
-      { id: 4, name: '内搭' },
-      { id: 5, name: '裤子' },
-      { id: 6, name: '套装' }
-    ]
+  setError(key, value) {
+    this.error.set(key, value)
+    wx.setStorageSync(`api_error_${key}`, value)
   },
-  newProducts: {
-    productList: [
-      { id: 1, name: '休闲牛仔外套', code: 'JC001', price: 299, originalPrice: 599, imageUrl: '', stock: 50, tags: ['不退款', '不换款'], sales: 128, isSoldOut: 0 },
-      { id: 2, name: '简约黑色T恤', code: 'TS001', price: 89, originalPrice: 199, imageUrl: '', stock: 100, tags: ['不退款'], sales: 256, isSoldOut: 0 },
-      { id: 3, name: '纯棉休闲裤', code: 'PK001', price: 159, originalPrice: 399, imageUrl: '', stock: 30, tags: ['不退款', '只换尺码'], sales: 89, isSoldOut: 1 }
-    ]
+  getError(key) {
+    return this.error.get(key) || wx.getStorageSync(`api_error_${key}`)
   },
-  cart: {
-    cartList: []
-  },
-  user: {
-    id: 1,
-    level: 1,
-    levelName: '普通会员',
-    avatarUrl: ''
+  clear(key) {
+    this.loading.delete(key)
+    this.error.delete(key)
+    wx.removeStorageSync(`api_loading_${key}`)
+    wx.removeStorageSync(`api_error_${key}`)
   }
 }
 
-// 模拟异步请求
-function mockRequest(data, delay = 300) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(data)
-    }, delay)
+function request(options) {
+  const { url, method = 'GET', data = {} } = options
+  const cacheKey = `${method}:${url}:${JSON.stringify(data)}`
+
+  return new Promise((resolve, reject) => {
+    stateManager.setLoading(cacheKey, true)
+    wx.setStorageSync('api_states', {
+      loading: { ...stateManager.loading, [cacheKey]: true },
+      error: stateManager.error
+    })
+
+    wx.request({
+      url: options.url,
+      method: method,
+      data: data,
+      header: { 'Content-Type': 'application/json' },
+      success(res) {
+        if (res.statusCode === 200 && res.data.code === 200) {
+          stateManager.clear(cacheKey)
+          wx.setStorageSync('api_states', { loading: {}, error: {} })
+          resolve(res.data.data)
+        } else {
+          const errorMsg = res.data.message || '请求失败'
+          stateManager.setError(cacheKey, errorMsg)
+          reject(new Error(errorMsg))
+        }
+      },
+      fail(err) {
+        const errorMsg = err.errMsg || '网络错误'
+        stateManager.setError(cacheKey, errorMsg)
+        reject(new Error(errorMsg))
+      }
+    })
   })
+}
+
+function getApiState(key) {
+  const states = wx.getStorageSync('api_states') || { loading: {}, error: {} }
+  return { loading: states.loading[key] || false, error: states.error[key] || null }
 }
 
 const api = {
   getHomeData() {
-    return mockRequest(mockData.home)
+    return request({ url: `${API_BASE}/home` })
   },
   getSpecialOffers() {
-    return mockRequest(mockData.specialOffers)
+    return request({ url: `${API_BASE}/special-offers` })
   },
   getCartList() {
-    return mockRequest(mockData.cart)
+    return request({ url: `${API_BASE}/cart` })
   },
   addToCart(data) {
-    return mockRequest({ success: true })
+    return request({ url: `${API_BASE}/cart/add`, method: 'POST', data })
   },
   getNewProducts() {
-    return mockRequest(mockData.newProducts)
+    return request({ url: `${API_BASE}/products/new` })
   },
   getCategoryData() {
-    return mockRequest(mockData.categories)
+    return request({ url: `${API_BASE}/categories` })
   },
   getProductsByCategory(categoryId) {
-    return mockRequest(mockData.newProducts)
+    return request({ url: `${API_BASE}/products`, data: { categoryId } })
   },
   getUserInfo() {
-    return mockRequest(mockData.user)
+    return request({ url: `${API_BASE}/user/info` })
   },
   getOrders() {
-    return mockRequest({ orderList: [] })
+    return request({ url: `${API_BASE}/orders` })
   }
 }
 
-module.exports = {
-  api,
-  getApiState: () => ({ loading: false, error: null }),
-  request: mockRequest
-}
+module.exports = { api, getApiState, request }
