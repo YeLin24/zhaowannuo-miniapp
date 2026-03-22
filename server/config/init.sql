@@ -1,11 +1,14 @@
 -- ZHAOWANNUO 数据库初始化脚本
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- 创建数据库
 CREATE DATABASE IF NOT EXISTS zhaowannuo CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE zhaowannuo;
 
 -- 用户表
-CREATE TABLE IF NOT EXISTS users (
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
   id INT PRIMARY KEY AUTO_INCREMENT,
   openid VARCHAR(64) UNIQUE COMMENT '微信openid',
   nickname VARCHAR(64) COMMENT '昵称',
@@ -14,18 +17,20 @@ CREATE TABLE IF NOT EXISTS users (
   level_name VARCHAR(32) DEFAULT '普通会员' COMMENT '等级名称',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
 
 -- 分类表
-CREATE TABLE IF NOT EXISTS categories (
+DROP TABLE IF EXISTS categories;
+CREATE TABLE categories (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(32) NOT NULL COMMENT '分类名称',
+  name VARCHAR(64) NOT NULL COMMENT '分类名称',
   sort_order INT DEFAULT 0 COMMENT '排序',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='分类表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='分类表';
 
 -- 商品表
-CREATE TABLE IF NOT EXISTS products (
+DROP TABLE IF EXISTS products;
+CREATE TABLE products (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(128) NOT NULL COMMENT '商品名称',
   code VARCHAR(64) COMMENT '商品编码',
@@ -42,10 +47,11 @@ CREATE TABLE IF NOT EXISTS products (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (category_id) REFERENCES categories(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='商品表';
 
 -- 购物车表
-CREATE TABLE IF NOT EXISTS cart (
+DROP TABLE IF EXISTS cart;
+CREATE TABLE cart (
   id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT NOT NULL COMMENT '用户ID',
   product_id INT NOT NULL COMMENT '商品ID',
@@ -55,10 +61,11 @@ CREATE TABLE IF NOT EXISTS cart (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (product_id) REFERENCES products(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='购物车表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='购物车表';
 
 -- Banner表
-CREATE TABLE IF NOT EXISTS banners (
+DROP TABLE IF EXISTS banners;
+CREATE TABLE banners (
   id INT PRIMARY KEY AUTO_INCREMENT,
   image_url VARCHAR(255) NOT NULL COMMENT '图片URL',
   link_type VARCHAR(32) COMMENT '跳转类型',
@@ -66,7 +73,7 @@ CREATE TABLE IF NOT EXISTS banners (
   sort_order INT DEFAULT 0 COMMENT '排序',
   is_active TINYINT DEFAULT 1 COMMENT '是否启用',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Banner表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Banner表';
 
 -- 插入测试数据
 INSERT INTO categories (name, sort_order) VALUES
@@ -88,4 +95,6 @@ INSERT INTO banners (image_url, link_type, link_value, sort_order) VALUES
 
 -- 插入测试用户
 INSERT INTO users (openid, nickname, level, level_name) VALUES
-('test_openid_001', '测试用户', 1, '普通会员');
+('test_openid_001', 'Test User', 1, 'Normal Member');
+
+SET FOREIGN_KEY_CHECKS = 1;

@@ -2,7 +2,7 @@
 // 真实接口：/api/categories，/api/products?categoryId=xxx
 // TODO: 确认实际接口字段映射
 
-const api = require('../../services/api')
+const { api } = require('../../services/api')
 const app = getApp()
 
 Page({
