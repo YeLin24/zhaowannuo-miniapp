@@ -1,11 +1,11 @@
 # Roadmap: ZHAOWANNUO 微信小程序商城
 
 **Created:** 2026-03-21
-**Phases:** 4 | **Requirements:** 43 | Coverage: 100% ✓
+**Phases:** 6 | **Requirements:** TBD | Coverage: -
 
 ---
 
-## Phase 1: 项目骨架 + 全局基础 ✓
+## Phase 1: 项目骨架 + 全局基础
 
 **Goal:** 小程序可运行，路由配置完整，全局样式/组件就绪
 
@@ -26,7 +26,7 @@
 
 ---
 
-## Phase 2: 首页 ✓
+## Phase 2: 首页
 
 **Goal:** 首页完整还原，数据从API加载
 
@@ -46,7 +46,7 @@
 
 ---
 
-## Phase 3: 破价专区 + 购物车 ✓
+## Phase 3: 破价专区 + 购物车
 
 **Goal:** 商品列表页和购物车空状态完整还原
 
@@ -62,19 +62,9 @@
 - 购物车空状态背景#F5F5F5，按钮圆角
 - 所有数据从API获取
 
-### Phase 5: 后端API服务 ✓
-
-**Goal:** [To be planned]
-**Requirements**: TBD
-**Depends on:** Phase 4
-**Plans:** 0 plans
-
-Plans:
-- [ ] TBD (run /gsd:plan-phase 5 to break down)
-
 ---
 
-## Phase 4: 上新页 + 会员中心 + 分类页 ✓
+## Phase 4: 上新页 + 会员中心 + 分类页
 
 **Goal:** 剩余3个页面完整还原
 
@@ -90,3 +80,35 @@ Plans:
 - 会员中心菜单4图标单行排列
 - 分类Tab切换正确高亮
 - 所有数据从API获取
+
+---
+
+## Phase 5: 后端API服务
+
+**Goal:** 后端服务完整，数据接口就绪
+
+**Requirements:** TBD
+
+**Plans:**
+- [x] 05-01-PLAN.md — 后端API服务
+
+---
+
+## Phase 6: 样式更新 - 一比一复刻设计规范到小程序
+
+**Goal:** 建立统一的CSS变量系统，替换所有硬编码颜色值，确保视觉一致性
+
+**Requirements:** BASE-02, IDX-01~07, SPE-01~08, CART-01~05, NEW-01~06, MINE-01~08, CAT-01~08
+
+**Plans:**
+0/0 plans complete
+
+**Plan list:**
+- [x] .planning/phases/06-style-update/06-01-PLAN.md — 一比一复刻设计规范到小程序
+
+**Success Criteria:**
+- 所有CSS变量定义在app.wxss中，与design-spec.md完全一致
+- 所有6个页面使用CSS变量代替硬编码颜色值
+- 视觉外观保持不变
+
+---

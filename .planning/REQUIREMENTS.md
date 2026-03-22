@@ -16,8 +16,8 @@
 ### 首页 (pages/index)
 
 - [x] **IDX-01**: 顶部NavBar（Home图标左、胶囊右，无标题文字）
-- [x] **IDX-02**: 品牌Logo "ZHAOWANNUO®" 左对齐，font-weight:700，黑色
-- [x] **IDX-03**: 次级导航行："探索全部⊕"（左）+"2026∨"（右）
+- [x] **IDX-02**: 品牌Logo "ZHAOWANNUO" 左对齐，font-weight:700，黑色
+- [x] **IDX-03**: 次级导航行："探索全部"（左）+"2026"（右）
 - [x] **IDX-04**: 黑色横幅banner，单行文字"破价专区 · Special Offer 点击进入 >"，可点击跳转破价专区
 - [x] **IDX-05**: 全宽模特图区域（占位符，底部文字"ZHAOWANNUO | 所有产品"）
 - [x] **IDX-06**: 右下角橙色渐变悬浮礼物按钮（直径96rpx）
@@ -45,7 +45,7 @@
 ### 上新页 (pages/new)
 
 - [x] **NEW-01**: NavBar（Home图标左，"新品"左对齐标题，胶囊右）
-- [x] **NEW-02**: 折叠标题区"直播间的小黄车"（粗体左对齐）+下划线装饰+"∨"箭头
+- [x] **NEW-02**: 折叠标题区"直播间的小黄车"（粗体左对齐）+下划线装饰+"箭头
 - [x] **NEW-03**: 产品分类banner（"Central Product Classification"小字+"产品分类"字间距大字+"点击进入"按钮）
 - [x] **NEW-04**: 双列商品网格（gap:20rpx，padding:20rpx）
 - [x] **NEW-05**: 商品卡片：图片区（含底部"ZHAOWANNUO"灰色文字）+商品名+标签+销售数据+价格+黑色圆形购物车按钮
@@ -59,14 +59,14 @@
 - [x] **MINE-04**: 购物须知卡片（浅背景圆角）："SHOPPING NOTICE"大标题+字间距+"购物须知"黑色按钮+三栏须知图标
 - [x] **MINE-05**: 功能菜单卡片（白色圆角）：4个图标单行（我的订单/收货人地址/我的优惠券/我的收藏）
 - [x] **MINE-06**: 退出登录项（箭头图标，左对齐）
-- [x] **MINE-07**: 底部"🍀 凡科商城提供技术支持"（#CCCCCC）
+- [x] **MINE-07**: 底部"技术支持"（#CCCCCC）
 - [x] **MINE-08**: 从API获取用户信息
 
 ### 分类页 (pages/category)
 
 - [x] **CAT-01**: NavBar（Home图标左，无标题，胶囊右）
-- [x] **CAT-02**: 居中Logo "ZHAOWANNUO®"+"官方旗舰店"副标题
-- [x] **CAT-03**: 搜索框（圆角，"🔍 探索更多"，全宽）
+- [x] **CAT-02**: 居中Logo "ZHAOWANNUO"+"官方旗舰店"副标题
+- [x] **CAT-03**: 搜索框（圆角，"探索更多"，全宽）
 - [x] **CAT-04**: 横向滚动Tab标签（小程序专属/早期特价/外套/内搭/裤子/套装），选中项粗体+下划线
 - [x] **CAT-05**: Tab下方banner（同上新页"所有产品"样式）
 - [x] **CAT-06**: 双列商品网格（同上新页样式）
@@ -105,11 +105,13 @@
 | NEW-01~06 | Phase 4 | Complete |
 | MINE-01~08 | Phase 4 | Complete |
 | CAT-01~08 | Phase 4 | Complete |
+| BASE-02 (CSS Variables) | Phase 6 | Planned |
 
 **Coverage:**
 - v1 requirements: 43 total
 - Mapped to phases: 43
-- Unmapped: 0 ✓
+- Unmapped: 0
 
 ---
+
 *Requirements defined: 2026-03-21*
