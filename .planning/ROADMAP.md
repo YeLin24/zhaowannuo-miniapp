@@ -5,7 +5,7 @@
 
 ---
 
-## Phase 1: 项目骨架 + 全局基础
+## Phase 1: 项目骨架 + 全局基础 ✓
 
 **Goal:** 小程序可运行，路由配置完整，全局样式/组件就绪
 
@@ -26,7 +26,7 @@
 
 ---
 
-## Phase 2: 首页
+## Phase 2: 首页 ✓
 
 **Goal:** 首页完整还原，数据从API加载
 
@@ -46,7 +46,7 @@
 
 ---
 
-## Phase 3: 破价专区 + 购物车
+## Phase 3: 破价专区 + 购物车 ✓
 
 **Goal:** 商品列表页和购物车空状态完整还原
 
@@ -62,9 +62,19 @@
 - 购物车空状态背景#F5F5F5，按钮圆角
 - 所有数据从API获取
 
+### Phase 5: 后端API服务 ✓
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 4
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 5 to break down)
+
 ---
 
-## Phase 4: 上新页 + 会员中心 + 分类页
+## Phase 4: 上新页 + 会员中心 + 分类页 ✓
 
 **Goal:** 剩余3个页面完整还原
 
