@@ -1,32 +1,5 @@
-/* 全局样式重置 */
+/* 微信小程序 CSS 变量定义在 page 上（:root 不支持） */
 page {
-  font-family: var(--font-family);
-  font-size: var(--font-size-base);
-  color: var(--color-text-primary);
-  background-color: var(--color-bg);
-  box-sizing: border-box;
-}
-
-/* 清除默认边距 */
-view, text, image, input, button {
-  margin: 0;
-  padding: 0;
-}
-
-/* 按钮重置 */
-button {
-  background: transparent;
-  border: none;
-  padding: 0;
-  line-height: 1;
-}
-
-button::after {
-  border: none;
-}
-
-/* ===== CSS Variables ===== */
-:root {
   /* 颜色系统 */
   --color-primary: #000000;
   --color-bg: #FFFFFF;
@@ -68,6 +41,31 @@ button::after {
   --radius-xl: 32rpx;
   --radius-full: 50%;
   --radius-pill: 40rpx;
+
+  /* 使用变量 */
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  box-sizing: border-box;
+}
+
+/* 清除默认边距 */
+view, text, image, input, button {
+  margin: 0;
+  padding: 0;
+}
+
+/* 按钮重置 */
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}
+
+button::after {
+  border: none;
 }
 
 /* 图片占位符通用样式 */
