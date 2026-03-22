@@ -1,19 +1,19 @@
 /* 对应示例图2：破价专区样式 */
 
 .page {
-  background-color: #FFFFFF;
+  background-color: var(--color-bg);
   min-height: 100vh;
   position: relative;
 }
 
 /* ===== NavBar ===== */
 .navbar {
-  background-color: #FFFFFF;
+  background-color: var(--color-bg);
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 0 32rpx 16rpx;
+  padding: 0 var(--spacing-lg) var(--spacing-sm);
   box-sizing: border-box;
 }
 
@@ -28,7 +28,7 @@
 
 .back-arrow {
   font-size: 56rpx;
-  color: #000000;
+  color: var(--color-primary);
   font-weight: 300;
   line-height: 1;
   margin-top: -8rpx;
@@ -37,8 +37,8 @@
 /* "破价专区"胶囊badge（从图2提取：圆角28rpx，边框，黑色文字） */
 .navbar__title-badge {
   height: 60rpx;
-  padding: 0 32rpx;
-  border: 2rpx solid #000000;
+  padding: 0 var(--spacing-lg);
+  border: 2rpx solid var(--color-primary);
   border-radius: 30rpx;
   display: flex;
   align-items: center;
@@ -46,8 +46,8 @@
 }
 
 .navbar__title-text {
-  font-size: 28rpx;
-  color: #000000;
+  font-size: var(--font-size-base);
+  color: var(--color-primary);
   font-weight: 500;
 }
 
@@ -61,7 +61,7 @@
 .capsule-btn {
   width: 174rpx;
   height: 64rpx;
-  border: 1rpx solid #E5E5E5;
+  border: 1rpx solid var(--color-border);
   border-radius: 32rpx;
   display: flex;
   flex-direction: row;
@@ -81,27 +81,27 @@
   width: 8rpx;
   height: 8rpx;
   border-radius: 50%;
-  background-color: #000000;
+  background-color: var(--color-primary);
 }
 
 .capsule-divider {
   width: 1rpx;
   height: 32rpx;
-  background-color: #E5E5E5;
+  background-color: var(--color-border);
 }
 
 .capsule-circle {
   width: 36rpx;
   height: 36rpx;
   border-radius: 50%;
-  border: 2rpx solid #000000;
+  border: 2rpx solid var(--color-primary);
 }
 
 /* ===== 模特Banner ===== */
 .banner-model {
   width: 100%;
   position: relative;
-  margin: 0 0 24rpx;
+  margin: 0 0 var(--spacing-md);
 }
 
 .banner-model__img {
@@ -124,28 +124,28 @@
 }
 
 .banner-model__sub {
-  font-size: 24rpx; /* 从示例图提取：小字 "all products" */
+  font-size: var(--font-size-sm);
   color: rgba(255,255,255,0.85);
   letter-spacing: 2rpx;
 }
 
 .banner-model__title {
-  font-size: 44rpx; /* 从示例图提取：大字 "所有产品" */
-  color: #FFFFFF;
+  font-size: var(--font-size-xl);
+  color: var(--color-bg);
   font-weight: 600;
   letter-spacing: 4rpx;
 }
 
 .banner-model__btn {
   margin-top: 8rpx;
-  background-color: #000000;
+  background-color: var(--color-primary);
   padding: 12rpx 40rpx;
   border-radius: 40rpx;
 }
 
 .banner-model__btn-text {
-  font-size: 24rpx;
-  color: #FFFFFF;
+  font-size: var(--font-size-sm);
+  color: var(--color-bg);
   letter-spacing: 2rpx;
 }
 
@@ -155,15 +155,15 @@
   display: flex;
   flex-direction: column;
   gap: 20rpx;
-  margin-bottom: 32rpx;
+  margin-bottom: var(--spacing-lg);
 }
 
 /* 商品卡片：白色背景，圆角12rpx，阴影 */
 /* 从示例图2提取：左图右文布局，左图正方形240rpx */
 .product-card {
-  background-color: #FFFFFF;
+  background-color: var(--color-bg);
   border-radius: 12rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.08); /* 从示例图提取 */
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.08);
   display: flex;
   flex-direction: row;
   overflow: hidden;
@@ -177,7 +177,7 @@
   flex-shrink: 0;
   width: 220rpx;
   height: 220rpx;
-  border-radius: 8rpx;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   position: relative;
 }
@@ -201,8 +201,8 @@
 }
 
 .sold-out-text {
-  font-size: 24rpx;
-  color: #FFFFFF;
+  font-size: var(--font-size-sm);
+  color: var(--color-bg);
   font-weight: 500;
 }
 
@@ -218,8 +218,8 @@
 /* 商品名 */
 /* 从示例图2提取：font-weight:500，#000000，28rpx */
 .product-card__name {
-  font-size: 26rpx;
-  color: #000000;
+  font-size: var(--font-size-base);
+  color: var(--color-primary);
   font-weight: 500;
   line-height: 1.4;
 }
@@ -236,9 +236,9 @@
 /* 从示例图2提取：边框#CCCCCC，文字#666666，font-size:20rpx */
 .tag {
   font-size: 20rpx;
-  color: #666666;
-  border: 1rpx solid #CCCCCC;
-  border-radius: 4rpx;
+  color: var(--color-text-secondary);
+  border: 1rpx solid var(--color-text-muted);
+  border-radius: var(--radius-sm);
   padding: 4rpx 12rpx;
   line-height: 1.4;
 }
@@ -246,8 +246,8 @@
 /* 库存文字 */
 /* 从示例图2提取：#999999，24rpx */
 .product-card__stock {
-  font-size: 24rpx;
-  color: #999999;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
 }
 
 /* 价格行 */
@@ -263,7 +263,7 @@
 /* 从示例图2提取：font-weight:600，#000000，32rpx */
 .product-card__price {
   font-size: 32rpx;
-  color: #000000;
+  color: var(--color-primary);
   font-weight: 600;
 }
 
@@ -273,7 +273,7 @@
   width: 64rpx;
   height: 64rpx;
   border-radius: 50%;
-  border: 1rpx solid #CCCCCC;
+  border: 1rpx solid var(--color-text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -285,7 +285,7 @@
 
 .add-cart-icon {
   font-size: 36rpx;
-  color: #999999;
+  color: var(--color-text-secondary);
   line-height: 1;
   margin-top: -2rpx;
 }
@@ -299,8 +299,8 @@
 }
 
 .empty-text {
-  font-size: 28rpx;
-  color: #999999;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
 }
 
 /* ===== 加载/错误状态 ===== */
@@ -314,8 +314,8 @@
 .loading-spinner {
   width: 60rpx;
   height: 60rpx;
-  border: 4rpx solid #F0F0F0;
-  border-top-color: #000000;
+  border: 4rpx solid var(--color-bg-secondary);
+  border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -330,22 +330,22 @@
   align-items: center;
   justify-content: center;
   height: 400rpx;
-  gap: 32rpx;
+  gap: var(--spacing-lg);
 }
 
-.error-text { font-size: 28rpx; color: #999999; }
+.error-text { font-size: var(--font-size-base); color: var(--color-text-secondary); }
 .retry-btn {
-  padding: 16rpx 48rpx;
-  background-color: #000000;
-  color: #FFFFFF;
+  padding: var(--spacing-sm) 48rpx;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
   border-radius: 40rpx;
-  font-size: 26rpx;
+  font-size: var(--font-size-base);
 }
 
 /* ===== 悬浮礼物按钮 ===== */
 .float-gift {
   position: fixed;
-  right: 32rpx;
+  right: var(--spacing-lg);
   bottom: calc(120rpx + env(safe-area-inset-bottom));
   width: 96rpx;
   height: 96rpx;
