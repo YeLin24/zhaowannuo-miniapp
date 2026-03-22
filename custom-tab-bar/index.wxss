@@ -1,18 +1,18 @@
 /* 自定义TabBar样式 */
-/* 从示例图提取：背景#FFFFFF，上边框#F0F0F0，高度100rpx+安全区 */
+/* 从示例图提取：背景#FFFFFF，上边框0.5px #eee，高度83px (含安全区34px) */
 
 .tab-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: calc(100rpx + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom);
+  height: calc(166rpx + env(safe-area-inset-bottom));
+  padding: 16rpx 0 34rpx;
   background-color: #FFFFFF;
-  border-top: 1rpx solid #F0F0F0;
+  border-top: 1rpx solid #EEEEEE;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   z-index: 100;
 }
 
@@ -22,18 +22,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100rpx;
+  gap: 4rpx;
   position: relative;
 }
 
 .tab-bar__text {
-  font-size: 24rpx;
-  color: #999999; /* 从示例图提取：未选中灰色 */
+  font-size: 20rpx;
+  color: #999999;
   font-weight: 400;
   line-height: 1;
 }
 
 .tab-bar__item--active .tab-bar__text {
-  color: #000000; /* 从示例图提取：选中黑色 */
+  color: #000000;
   font-weight: 600;
 }

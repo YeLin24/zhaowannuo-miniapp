@@ -44,10 +44,13 @@ button::after {
 
   /* 字体系统 */
   --font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  --font-size-xs: 20rpx;
   --font-size-sm: 24rpx;
   --font-size-base: 28rpx;
+  --font-size-md: 32rpx;
   --font-size-lg: 36rpx;
   --font-size-xl: 44rpx;
+  --font-size-xxl: 48rpx;
   --font-weight-regular: 400;
   --font-weight-bold: 600;
 

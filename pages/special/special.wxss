@@ -175,16 +175,16 @@
 /* 左侧图片区域 */
 .product-card__img-wrap {
   flex-shrink: 0;
-  width: 220rpx;
-  height: 220rpx;
+  width: 240rpx;
+  height: 300rpx;
   border-radius: var(--radius-sm);
   overflow: hidden;
   position: relative;
 }
 
 .product-card__img {
-  width: 220rpx;
-  height: 220rpx;
+  width: 240rpx;
+  height: 300rpx;
   font-size: 18rpx;
 }
 
@@ -232,15 +232,16 @@
   gap: 8rpx;
 }
 
-/* 标签：灰色边框，圆角 */
-/* 从示例图2提取：边框#CCCCCC，文字#666666，font-size:20rpx */
+/* 标签：黑色边框，圆角 */
+/* 从示例图2提取：边框#000000，文字#000000，font-size:20rpx */
 .tag {
   font-size: 20rpx;
-  color: var(--color-text-secondary);
-  border: 1rpx solid var(--color-text-muted);
+  color: var(--color-primary);
+  border: 1rpx solid var(--color-tag-border);
   border-radius: var(--radius-sm);
   padding: 4rpx 12rpx;
   line-height: 1.4;
+  background-color: var(--color-bg);
 }
 
 /* 库存文字 */

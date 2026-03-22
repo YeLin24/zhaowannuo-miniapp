@@ -178,7 +178,7 @@
 .banner-category {
   width: 100%;
   position: relative;
-  margin: 20rpx 0;
+  margin: 0 16px 16px;
 }
 
 .banner-img {
@@ -227,19 +227,19 @@
 
 /* ===== 双列商品网格（同上新页） ===== */
 .product-grid {
-  padding: 20rpx;
+  padding: 8px 12px 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20rpx;
+  gap: 24rpx;
 }
 
 .product-card {
   background-color: var(--color-bg);
-  border-radius: 12rpx;
+  border-radius: 20rpx;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding-bottom: 20rpx;
+  border: 1rpx solid #f0f0f0;
 }
 
 .product-card__img-wrap {
@@ -249,10 +249,9 @@
 
 .product-card__img {
   width: 100%;
-  aspect-ratio: 1;
+  height: 320rpx;
   font-size: 18rpx;
   text-align: center;
-  padding: 12rpx;
 }
 
 .product-card__brand-tag {
@@ -294,10 +293,10 @@
 
 .tag {
   font-size: 18rpx;
-  color: var(--color-text-secondary);
-  border: 1rpx solid var(--color-text-muted);
-  border-radius: var(--radius-sm);
-  padding: 3rpx 10rpx;
+  color: var(--color-primary);
+  border: 1rpx solid var(--color-tag-border);
+  border-radius: 6rpx;
+  padding: 2rpx 12rpx;
 }
 
 .product-card__sales {

@@ -152,12 +152,12 @@
 }
 
 /* ===== 购物须知卡片 ===== */
-/* 从图5提取：浅灰圆角背景，内边距充足 */
+/* 从图5提取：白色圆角背景，内边距充足 */
 .notice-card {
-  background-color: #F8F6F2;
+  background-color: var(--color-bg);
   border-radius: var(--radius-md);
-  margin: 0 24rpx 20rpx;
-  padding: 40rpx var(--spacing-lg);
+  margin: 0 16px 12px;
+  padding: 40rpx 32rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -221,7 +221,7 @@
 .menu-card {
   background-color: var(--color-bg);
   border-radius: var(--radius-md);
-  margin: 0 24rpx 20rpx;
+  margin: 0 16px 12px;
   overflow: hidden;
 }
 
@@ -287,8 +287,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 48rpx;
-  padding-bottom: 40rpx;
+  gap: 12rpx;
+  margin-top: 40rpx;
+  padding-bottom: 120rpx;
+}
+
+.footer__logo {
+  font-size: 28rpx;
 }
 
 .footer__text {

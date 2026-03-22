@@ -105,7 +105,7 @@
 /* ===== 品牌Logo ===== */
 /* 从示例图提取：左对齐，font-weight:700，大字号 */
 .brand-logo {
-  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-sm);
+  padding: 8px 16px 4px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -133,7 +133,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-xs) var(--spacing-lg) 20rpx;
+  padding: 8px 16px 6px;
 }
 
 .sub-nav__left,
@@ -157,15 +157,14 @@
 }
 
 /* ===== 黑色Banner ===== */
-/* 从示例图提取：纯黑背景#000000，文字单行居中，高约400rpx */
+/* 从示例图提取：纯黑背景#000000，文字单行居中 */
 .banner-black {
   width: 100%;
-  height: 400rpx;
   background-color: var(--color-dark-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 var(--spacing-xl);
+  padding: 10px 16px;
 }
 
 .banner-black__text {
@@ -184,24 +183,38 @@
 
 .model-img {
   width: 100%;
+  display: block;
+}
+
+.model-section:first-of-type .model-img {
+  height: 520rpx;
+}
+
+.model-section:last-of-type .model-img {
+  height: 480rpx;
+}
+
+/* 10px gap between images */
+.model-section:first-of-type {
+  margin-bottom: 20rpx;
 }
 
 .model-label {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: var(--spacing-md) 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+  bottom: 16px;
+  right: 16px;
+  padding: 0;
+  background: transparent;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .model-label__text {
   font-size: var(--font-size-sm);
   color: rgba(255,255,255,0.9);
-  letter-spacing: 2rpx;
+  letter-spacing: 1rpx;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 /* ===== 悬浮礼物按钮 ===== */

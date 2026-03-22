@@ -176,25 +176,25 @@
 }
 
 /* ===== 双列商品网格 ===== */
-/* 从图4提取：padding:20rpx，gap:20rpx，白色卡片圆角12rpx */
+/* 从图4提取：padding:12px/24rpx，gap:12px/24rpx，白色卡片圆角10rpx */
 .product-grid {
-  padding: 20rpx;
+  padding: 0 12px 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20rpx;
+  gap: 24rpx;
 }
 
 /* 商品卡片 */
 .product-card {
   background-color: var(--color-bg);
-  border-radius: 12rpx;
+  border-radius: 20rpx;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding-bottom: 20rpx;
+  border: 1rpx solid #f0f0f0;
 }
 
-/* 图片区（正方形，aspect-ratio:1） */
+/* 图片区 */
 .product-card__img-wrap {
   width: 100%;
   position: relative;
@@ -202,10 +202,9 @@
 
 .product-card__img {
   width: 100%;
-  aspect-ratio: 1;
+  height: 320rpx;
   font-size: 18rpx;
   text-align: center;
-  padding: 12rpx;
 }
 
 /* 图片底部品牌名（从图4提取：白色背景区域底部，灰色小字） */
@@ -249,13 +248,13 @@
   gap: 6rpx;
 }
 
-/* 标签（更小尺寸，从图4提取：18rpx） */
+/* 标签（更小尺寸，从图4提取：18rpx，黑色边框） */
 .tag {
   font-size: 18rpx;
-  color: var(--color-text-secondary);
-  border: 1rpx solid var(--color-text-muted);
-  border-radius: var(--radius-sm);
-  padding: 3rpx 10rpx;
+  color: var(--color-primary);
+  border: 1rpx solid var(--color-tag-border);
+  border-radius: 6rpx;
+  padding: 2rpx 12rpx;
   line-height: 1.4;
 }
 

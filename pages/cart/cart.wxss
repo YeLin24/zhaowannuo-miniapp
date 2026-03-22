@@ -137,12 +137,12 @@
 }
 
 /* 继续逛逛按钮 */
-/* 从图3提取：黑色背景#000000，白色文字，圆角40rpx，padding:24rpx 80rpx */
+/* 从图3提取：黑色背景#000000，白色文字，圆角30px/60rpx，padding:12px 40px */
 .empty-btn {
   margin-top: 48rpx;
   background-color: var(--color-primary);
-  border-radius: 48rpx;
-  padding: var(--spacing-md) 80rpx;
+  border-radius: 60rpx;
+  padding: 24rpx 80rpx;
 }
 
 .empty-btn__text {
