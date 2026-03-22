@@ -1,167 +1,104 @@
 // services/api.js
-// 真实接口封装，预留域名替换
+// Mock 数据 - 本地开发使用
 
-// 开发环境使用本地服务，生产环境替换为真实域名
-const API_BASE = 'http://172.24.6.171:3000/api' // 服务器地址
-
-// 三态管理
-const stateManager = {
-  loading: new Map(),
-  error: new Map(),
-
-  setLoading(key, value) {
-    this.loading.set(key, value)
-    wx.setStorageSync(`api_loading_${key}`, value)
+// Mock 数据
+const mockData = {
+  home: {
+    bannerList: [
+      { id: 1, imageUrl: '/images/banner1.jpg', linkType: 'page', linkValue: 'pages/special/special' },
+      { id: 2, imageUrl: '/images/banner2.jpg', linkType: 'page', linkValue: 'pages/new/new' }
+    ],
+    categoryList: [
+      { id: 1, name: '小程序专属' },
+      { id: 2, name: '早期特价' },
+      { id: 3, name: '外套' },
+      { id: 4, name: '内搭' },
+      { id: 5, name: '裤子' },
+      { id: 6, name: '套装' }
+    ],
+    productList: [
+      { id: 1, name: '休闲牛仔外套', code: 'JC001', price: 299, originalPrice: 599, imageUrl: '', stock: 50, tags: ['不退款', '不换款'], isSoldOut: 0 },
+      { id: 2, name: '简约黑色T恤', code: 'TS001', price: 89, originalPrice: 199, imageUrl: '', stock: 100, tags: ['不退款'], isSoldOut: 0 },
+      { id: 3, name: '纯棉休闲裤', code: 'PK001', price: 159, originalPrice: 399, imageUrl: '', stock: 30, tags: ['不退款', '只换尺码'], isSoldOut: 1 }
+    ]
   },
-  getLoading(key) {
-    return this.loading.get(key) || wx.getStorageSync(`api_loading_${key}`)
+  specialOffers: {
+    productList: [
+      { id: 1, name: '休闲牛仔外套', code: 'JC001', price: 299, originalPrice: 599, imageUrl: '', stock: 50, tags: ['不退款', '不换款'], isSoldOut: 0 },
+      { id: 2, name: '简约黑色T恤', code: 'TS001', price: 89, originalPrice: 199, imageUrl: '', stock: 100, tags: ['不退款'], isSoldOut: 0 },
+      { id: 3, name: '纯棉休闲裤', code: 'PK001', price: 159, originalPrice: 399, imageUrl: '', stock: 30, tags: ['不退款', '只换尺码'], isSoldOut: 1 }
+    ]
   },
-  setError(key, value) {
-    this.error.set(key, value)
-    wx.setStorageSync(`api_error_${key}`, value)
+  categories: {
+    tabs: [
+      { id: 0, name: '全部' },
+      { id: 1, name: '小程序专属' },
+      { id: 2, name: '早期特价' },
+      { id: 3, name: '外套' },
+      { id: 4, name: '内搭' },
+      { id: 5, name: '裤子' },
+      { id: 6, name: '套装' }
+    ]
   },
-  getError(key) {
-    return this.error.get(key) || wx.getStorageSync(`api_error_${key}`)
+  newProducts: {
+    productList: [
+      { id: 1, name: '休闲牛仔外套', code: 'JC001', price: 299, originalPrice: 599, imageUrl: '', stock: 50, tags: ['不退款', '不换款'], sales: 128, isSoldOut: 0 },
+      { id: 2, name: '简约黑色T恤', code: 'TS001', price: 89, originalPrice: 199, imageUrl: '', stock: 100, tags: ['不退款'], sales: 256, isSoldOut: 0 },
+      { id: 3, name: '纯棉休闲裤', code: 'PK001', price: 159, originalPrice: 399, imageUrl: '', stock: 30, tags: ['不退款', '只换尺码'], sales: 89, isSoldOut: 1 }
+    ]
   },
-  clear(key) {
-    this.loading.delete(key)
-    this.error.delete(key)
-    wx.removeStorageSync(`api_loading_${key}`)
-    wx.removeStorageSync(`api_error_${key}`)
+  cart: {
+    cartList: []
+  },
+  user: {
+    id: 1,
+    level: 1,
+    levelName: '普通会员',
+    avatarUrl: ''
   }
 }
 
-/**
- * 封装 wx.request 为 Promise，带三态处理
- * 假设后端统一返回：{ code: 200, data: {...}, message: 'ok' }
- * 如实际字段不同，请调整 resolve/reject 逻辑
- */
-function request(options) {
-  const { url, method = 'GET', data = {} } = options
-  const cacheKey = `${method}:${url}:${JSON.stringify(data)}`
-
-  return new Promise((resolve, reject) => {
-    // 设置 loading 状态
-    stateManager.setLoading(cacheKey, true)
-    wx.setStorageSync('api_states', {
-      loading: { ...stateManager.loading, [cacheKey]: true },
-      error: stateManager.error
-    })
-
-    wx.request({
-      url: options.url,
-      method: method,
-      data: data,
-      header: {
-        'Content-Type': 'application/json',
-        // TODO: 添加 token 认证头
-        // 'Authorization': `Bearer ${wx.getStorageSync('token')}`
-      },
-      success(res) {
-        if (res.statusCode === 200 && res.data.code === 200) {
-          stateManager.clear(cacheKey)
-          wx.setStorageSync('api_states', { loading: {}, error: {} })
-          resolve(res.data.data)
-        } else {
-          const errorMsg = res.data.message || '请求失败'
-          stateManager.setError(cacheKey, errorMsg)
-          wx.setStorageSync('api_states', {
-            loading: {},
-            error: { [cacheKey]: errorMsg }
-          })
-          reject(new Error(errorMsg))
-        }
-      },
-      fail(err) {
-        const errorMsg = err.errMsg || '网络错误'
-        stateManager.setError(cacheKey, errorMsg)
-        wx.setStorageSync('api_states', {
-          loading: {},
-          error: { [cacheKey]: errorMsg }
-        })
-        reject(new Error(errorMsg))
-      }
-    })
+// 模拟异步请求
+function mockRequest(data, delay = 300) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(data)
+    }, delay)
   })
 }
 
-// 获取三态的辅助方法
-function getApiState(key) {
-  const states = wx.getStorageSync('api_states') || { loading: {}, error: {} }
-  return {
-    loading: states.loading[key] || false,
-    error: states.error[key] || null
-  }
-}
-
 const api = {
-  // ========== 首页 ==========
-  // 真实接口：GET /api/home
-  // 返回字段：{ bannerList: [...], categoryList: [...], productList: [...] }
   getHomeData() {
-    return request({ url: `${API_BASE}/home` })
+    return mockRequest(mockData.home)
   },
-
-  // ========== 破价专区 ==========
-  // 真实接口：GET /api/special-offers
-  // 返回字段：{ productList: [{id, name, code, tags, stock, price, imageUrl, isSoldOut}] }
   getSpecialOffers() {
-    return request({ url: `${API_BASE}/special-offers` })
+    return mockRequest(mockData.specialOffers)
   },
-
-  // ========== 购物车 ==========
-  // 真实接口：GET /api/cart
-  // 返回字段：{ cartList: [{id, productId, name, price, imageUrl, quantity, sku}] }
   getCartList() {
-    return request({ url: `${API_BASE}/cart` })
+    return mockRequest(mockData.cart)
   },
-
-  // 加入购物车
-  // 真实接口：POST /api/cart/add
   addToCart(data) {
-    return request({
-      url: `${API_BASE}/cart/add`,
-      method: 'POST',
-      data
-    })
+    return mockRequest({ success: true })
   },
-
-  // ========== 上新页 ==========
-  // 真实接口：GET /api/products/new
-  // 返回字段：{ productList: [{id, name, code, tags, sales, stock, price, imageUrl}] }
-  getNewProducts(params) {
-    return request({ url: `${API_BASE}/products/new`, data: params })
+  getNewProducts() {
+    return mockRequest(mockData.newProducts)
   },
-
-  // ========== 分类页 ==========
-  // 真实接口：GET /api/categories
-  // 返回字段：{ tabs: [{id, name}], productList: [...] }
   getCategoryData() {
-    return request({ url: `${API_BASE}/categories` })
+    return mockRequest(mockData.categories)
   },
-
-  // 按分类获取商品
-  // 真实接口：GET /api/products?categoryId=xxx
   getProductsByCategory(categoryId) {
-    return request({ url: `${API_BASE}/products`, data: { categoryId } })
+    return mockRequest(mockData.newProducts)
   },
-
-  // ========== 用户信息 ==========
-  // 真实接口：GET /api/user/info
-  // 返回字段：{ id, level, levelName, avatarUrl }
   getUserInfo() {
-    return request({ url: `${API_BASE}/user/info` })
+    return mockRequest(mockData.user)
   },
-
-  // ========== 订单 ==========
-  // 真实接口：GET /api/orders
   getOrders() {
-    return request({ url: `${API_BASE}/orders` })
+    return mockRequest({ orderList: [] })
   }
 }
 
 module.exports = {
   api,
-  getApiState,
-  request
+  getApiState: () => ({ loading: false, error: null }),
+  request: mockRequest
 }
