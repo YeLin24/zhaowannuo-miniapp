@@ -2,7 +2,7 @@
 // 真实接口封装，预留域名替换
 
 // 开发环境使用本地服务，生产环境替换为真实域名
-const API_BASE = 'http://localhost:3000/api' // TODO: 上线时替换为真实域名
+const API_BASE = 'http://172.24.6.171:3000/api' // 服务器地址
 
 // 三态管理
 const stateManager = {

@@ -54,9 +54,10 @@ app.use((req, res) => {
 });
 
 // 启动服务
-app.listen(PORT, () => {
-  console.log(`ZHAOWANNUO API 服务运行在 http://localhost:${PORT}`);
-  console.log(`健康检查: http://localhost:${PORT}/api/health`);
+const HOST = process.env.HOST || '0.0.0.0';
+app.listen(PORT, HOST, () => {
+  console.log(`ZHAOWANNUO API 服务运行在 http://${HOST}:${PORT}`);
+  console.log(`健康检查: http://${HOST}:${PORT}/api/health`);
 });
 
 module.exports = app;
