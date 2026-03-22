@@ -244,7 +244,6 @@
 
 .product-card__img-wrap {
   width: 100%;
-  position: relative;
 }
 
 .product-card__img {
@@ -252,14 +251,12 @@
   height: 320rpx;
   font-size: 18rpx;
   text-align: center;
+  display: block;
 }
 
-.product-card__brand-tag {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 8rpx 0;
+/* 品牌名（在图片下方居中） */
+.product-card__brand {
+  padding: 12rpx 0 8rpx;
   background-color: var(--color-bg);
   display: flex;
   align-items: center;
@@ -267,8 +264,8 @@
 }
 
 .product-card__brand-text {
-  font-size: 18rpx;
-  color: #BBBBBB;
+  font-size: 20rpx;
+  color: #999999;
   letter-spacing: 2rpx;
 }
 

@@ -14,13 +14,13 @@
     </view>
     <view class="navbar__right">
       <view class="capsule-btn">
+        <view class="capsule-circle"></view>
+        <view class="capsule-divider"></view>
         <view class="capsule-dots">
           <view class="dot"></view>
           <view class="dot"></view>
           <view class="dot"></view>
         </view>
-        <view class="capsule-divider"></view>
-        <view class="capsule-circle"></view>
       </view>
     </view>
   </view>
@@ -76,16 +76,17 @@
         bindtap="goDetail"
         data-id="{{item.id}}"
       >
-        <!-- 图片区（正方形，底部"ZHAOWANNUO"品牌文字） -->
+        <!-- 图片区 -->
         <view class="product-card__img-wrap">
           <!-- 占位符：请替换为示例图4商品图 -->
           <view class="product-card__img img-placeholder">
             <text>【请替换】示例图4 - 商品图{{index+1}}</text>
           </view>
-          <!-- 底部品牌名（从图4提取：灰色小字在图片底部） -->
-          <view class="product-card__brand-tag">
-            <text class="product-card__brand-text">ZHAOWANNUO</text>
-          </view>
+        </view>
+
+        <!-- 品牌名（在图片下方） -->
+        <view class="product-card__brand">
+          <text class="product-card__brand-text">ZHAOWANNUO</text>
         </view>
 
         <!-- 商品名 -->

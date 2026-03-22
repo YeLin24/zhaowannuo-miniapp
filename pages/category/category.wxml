@@ -13,13 +13,13 @@
     </view>
     <view class="navbar__right">
       <view class="capsule-btn">
+        <view class="capsule-circle"></view>
+        <view class="capsule-divider"></view>
         <view class="capsule-dots">
           <view class="dot"></view>
           <view class="dot"></view>
           <view class="dot"></view>
         </view>
-        <view class="capsule-divider"></view>
-        <view class="capsule-circle"></view>
       </view>
     </view>
   </view>
@@ -101,10 +101,13 @@
           <view class="product-card__img img-placeholder">
             <text>【请替换】示例图6 - 商品图{{index+1}}</text>
           </view>
-          <view class="product-card__brand-tag">
-            <text class="product-card__brand-text">ZHAOWANNUO</text>
-          </view>
         </view>
+
+        <!-- 品牌名（在图片下方） -->
+        <view class="product-card__brand">
+          <text class="product-card__brand-text">ZHAOWANNUO</text>
+        </view>
+
         <text class="product-card__name">{{item.name}}</text>
         <view class="product-card__tags">
           <text

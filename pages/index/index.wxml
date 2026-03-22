@@ -12,16 +12,16 @@
         <view class="home-icon-body"></view>
       </view>
     </view>
-    <!-- 右：胶囊按钮（...+圆圈） -->
+    <!-- 右：胶囊按钮（圆圈+...） -->
     <view class="navbar__right">
       <view class="capsule-btn">
+        <view class="capsule-circle"></view>
+        <view class="capsule-divider"></view>
         <view class="capsule-dots">
           <view class="dot"></view>
           <view class="dot"></view>
           <view class="dot"></view>
         </view>
-        <view class="capsule-divider"></view>
-        <view class="capsule-circle"></view>
       </view>
     </view>
   </view>
